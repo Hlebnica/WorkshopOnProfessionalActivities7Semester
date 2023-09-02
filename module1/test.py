@@ -1,8 +1,12 @@
 import numpy as np
 import pandas as pd
 
-lst = [1, 2, 3, 4, 5] # создание списка Python
+#df = pd.read_csv(input.csv)
 
-s = pd.Series(lst)
+data = {'A': [1, 2, None, 4],
+        'B': [None, 2, 3, 4],
+        'C': [1, 2, 3, 4]}
+df = pd.DataFrame(data)
 
-print(s)
+has_missing_values = df.isna().any().any()
+print(has_missing_values)
