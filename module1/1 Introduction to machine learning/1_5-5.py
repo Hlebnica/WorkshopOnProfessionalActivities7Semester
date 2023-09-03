@@ -1,8 +1,3 @@
-import numpy as np
-import pandas as pd
-
-df = pd.read_csv('input.csv')
-
 df = df.iloc[:, 1:]
 data = df.values
 max_values = np.max(data, axis=1)
