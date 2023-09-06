@@ -1,11 +1,26 @@
 import numpy as np
 import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-df = pd.read_csv('input.csv')
+x = np.array([-2, 2, 0]).reshape((-1, 1))
+y = np.array([0, 0, 2])
 
-df = df.iloc[:, 1:]
-data = df.values
-max_values = np.max(data, axis=1)
-column_with_most_max_values = np.argmax(np.sum(data == max_values[:, np.newaxis], axis=0))
+# (−2,0),(2,0),(0,2)
 
-print(column_with_most_max_values)
+model = LinearRegression()
+
+model.fit(x, y)
+
+y_pred = model.predict(x)
+
+
+# Рассчитываем метрики
+mae = mean_absolute_error(y, y_pred)
+mse = mean_squared_error(y, y_pred)
+r2 = r2_score(y, y_pred)
+
+# Выводим результаты
+print("Средняя абсолютная ошибка (MAE):", mae)
+print("Среднеквадратичная ошибка (MSE):", mse)
+print("Коэффициент детерминации (R-squared):", r2)
